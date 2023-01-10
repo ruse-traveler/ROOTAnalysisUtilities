@@ -30,7 +30,7 @@ class TGraphicalUtility {
     struct TAxisStyle;
 
     // ctor/dtor
-    TGraphicalUtility();
+    TGraphicalUtility() {};
     ~TGraphicalUtility();
 
     // set object style

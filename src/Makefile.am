@@ -26,7 +26,13 @@ libtgraphicalutility_la_SOURCES = \
 
 libtgraphicalutility_la_LDFLAGS = \
   -L$(libdir) \
-  -L$(OFFLINE_MAIN)/lib
+  -L$(OFFLINE_MAIN)/lib \
+  -lcalo_io \
+  -lfun4all \
+  -lg4detectors_io \
+  -lphg4hit \
+  -lg4dst \
+  -lg4eval
 
 
 ################################################

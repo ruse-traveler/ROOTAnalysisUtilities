@@ -17,10 +17,10 @@
 #include <TString.h>
 #include <TCanvas.h>
 // graphical utility include
-#include <tgraphicalutility/TGraphicalUtility.h>
+#include </sphenix/u/danderson/install/include/tgraphicalutility/TGraphicalUtility.h>
 
 // load graphical utility library
-R__LOAD_LIBRARY(libtgraphicalutility.so)
+R__LOAD_LIBRARY(/sphenix/u/danderson/install/lib/libtgraphicalutility.so)
 
 
 
