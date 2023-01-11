@@ -23,6 +23,9 @@ class TGraphicalUtility {
 
   public:
 
+    // enums
+    enum Axis { x, y, z };
+
     // attribute styles
     struct TMarkerStyle;
     struct TLineStyle;
@@ -34,15 +37,15 @@ class TGraphicalUtility {
     ~TGraphicalUtility();
 
     // set object style
-    void set_style(/*auto &to_be_styled*/);
+    template <typename Type> void set_style(Type *to_be_styled);
 
   private:
 
     // attribute styles setters
-    void set_marker_style(/*auto &to_be_styled, */const TMarkerStyle marker_style);
-    void set_fill_style(/*auto &to_be_styled, */const TFillStyle fill_style);
-    void set_line_style(/*auto &to_be_styled, */const TLineStyle line_style);
-    void set_axis_style(/*auto &to_be_styled, */const TAxisStyle axis_style);
+    template <typename Type> void set_marker_style(Type *to_be_styled, const TMarkerStyle style);
+    template <typename Type> void set_fill_style(Type *to_be_styled, const TFillStyle style);
+    template <typename Type> void set_line_style(Type *to_be_styled, const TLineStyle style);
+    template <typename Type> void set_axis_style(Type *to_be_styled, const TAxisStyle style, const Axis axis);
 
 };
 

@@ -2,6 +2,7 @@ src/*
 !src/TGraphicalUtility.h
 !src/TGraphicalUtility.cc
 !src/TGraphicalUtility.types.h
+!src/TGraphicalUtility.attributes.h
 !src/autogen.sh
 !src/configure.ac
 !src/Makefile.am
