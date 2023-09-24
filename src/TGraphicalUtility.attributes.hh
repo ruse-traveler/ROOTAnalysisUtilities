@@ -1,14 +1,16 @@
-// 'TGraphicalUtility.attributes.h'
+// ----------------------------------------------------------------------------
+// 'TGraphicalUtility.attributes.hh'
 // Derek Anderson
 // 01.11.2022
 //
 // A class to streamline interacting
 // with graphical objects (e.g.
 // histograms) in ROOT
+// ----------------------------------------------------------------------------
 
 #pragma once
 
-#include <TGraphicalUtility.h>
+#include "TGraphicalUtility.hh"
 
 
 
@@ -48,7 +50,7 @@ template <typename Type> void TGraphicalUtility::set_fill_style(Type *to_be_styl
 
 template <typename Type> void TGraphicalUtility::set_axis_style(Type *to_be_styled, const TAxisStyle style, const Axis axis) {
 
-  switch (axis) {
+  switch (TGraphicalHelper::axis) {
     case x:
       to_be_styled -> GetXaxis() -> CenterTitle(style.title_center);
       to_be_styled -> GetXaxis() -> SetTitleFont(style.title_font);

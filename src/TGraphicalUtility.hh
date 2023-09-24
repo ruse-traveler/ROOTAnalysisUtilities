@@ -1,3 +1,4 @@
+// ----------------------------------------------------------------------------
 // 'TGraphicalUtility.h'
 // Derek Anderson
 // 01.10.2022
@@ -5,32 +6,25 @@
 // A class to streamline interacting
 // with graphical objects (e.g.
 // histograms) in ROOT
+// ----------------------------------------------------------------------------
 
 #ifndef TGraphicalUtility_h
 #define TGraphicalUtility_h
 
 // standard c includes
 /* will go here */
-
 // root includes
 #include <TROOT.h>
+// helper namespace
+#include "TGraphicalHelper.hh"
 
 
 
-// class definition -----------------------------------------------------------
+// TGraphicalUtility definition -----------------------------------------------
 
 class TGraphicalUtility {
 
   public:
-
-    // enums
-    enum Axis { x, y, z };
-
-    // attribute styles
-    struct TMarkerStyle;
-    struct TLineStyle;
-    struct TFillStyle;
-    struct TAxisStyle;
 
     // ctor/dtor
     TGraphicalUtility() {};

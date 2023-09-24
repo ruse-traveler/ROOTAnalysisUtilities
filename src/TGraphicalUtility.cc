@@ -1,3 +1,4 @@
+// ----------------------------------------------------------------------------
 // 'TGraphicalUtility.cc'
 // Derek Anderson
 // 01.10.2022
@@ -5,13 +6,13 @@
 // A class to streamline interacting
 // with graphical objects (e.g.
 // histograms) in ROOT
+// ----------------------------------------------------------------------------
 
 #define TGraphicalUtility_cc
 
 // header includes
-#include <TGraphicalUtility.h>
-#include <TGraphicalUtility.types.h>
-#include <TGraphicalUtility.attributes.h>
+#include "TGraphicalUtility.hh"
+#include "TGraphicalUtility.attributes.hh"
 
 using namespace std;
 

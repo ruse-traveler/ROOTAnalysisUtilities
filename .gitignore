@@ -1,8 +1,8 @@
 src/*
-!src/TGraphicalUtility.h
+!src/TGraphicalHelper.hh
 !src/TGraphicalUtility.cc
-!src/TGraphicalUtility.types.h
-!src/TGraphicalUtility.attributes.h
+!src/TGraphicalUtility.hh
+!src/TGraphicalUtility.attributes.hh
 !src/autogen.sh
 !src/configure.ac
 !src/Makefile.am
