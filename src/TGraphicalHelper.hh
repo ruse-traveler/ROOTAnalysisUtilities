@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// 'TGraphicalHelper.h'
+// 'TGraphicalHelper.hh'
 // Derek Anderson
 // 09.23.2023
 //
@@ -7,6 +7,9 @@
 // useful for interacting with graphical objects in
 // ROOT.
 // ----------------------------------------------------------------------------
+
+#include <string>
+
 
 namespace TGraphicalHelper {
 
@@ -18,37 +21,115 @@ namespace TGraphicalHelper {
     z
   };
 
+  enum Class {
+    TH1,
+    TH2,
+    TH3,
+    TF1,
+    TF2,
+    TGraph,
+    TGraph2D
+  };
+
   // types --------------------------------------------------------------------
 
-  struct TGraphicalUtility::TMarkerStyle {
-    UInt_t  marker_color = 1;
-    UInt_t  marker_style = 1;
-    Float_t marker_alpha = 0.;
-    Float_t marker_size  = 1.;
-  };
+  struct TMarkerStyle {
+    uint16_t color = 1;
+    uint16_t style = 1;
+    float    alpha = 0.;
+    float    size  = 1.;
 
-  struct TGraphicalUtility::TLineStyle {
-    UInt_t  line_color = 1;
-    UInt_t  line_style = 1;
-    UInt_t  line_width = 1;
-    Float_t line_alpha = 0.;
-  };
+    void SetStyle(const uint16_t col, const uint16_t sty, const float alp, const float siz) {
+      color = col;
+      style = sty;
+      alpha = alp;
+      size  = siz;
+      return;
+    }  // end 'SetStyle(uint16_t, uint16_t, float, float)'
 
-  struct TGraphicalUtility::TFillStyle {
-    UInt_t  fill_color = 1;
-    UInt_t  fill_style = 1;
-    Float_t fill_alpha = 0.;
-  };
+    void Reset() {
+      color = 1;
+      style = 1;
+      alpha = 0.;
+      size  = 1.;
+      return;
+    }  // end 'Reset()' 
+  };  // end TMarkerStyle def
 
-  struct TGraphicalUtility::TAxisStyle {
-    UInt_t  title_center = 0;
-    UInt_t  title_font   = 42;
-    UInt_t  label_font   = 42;
-    Float_t title_size   = 0.04;
-    Float_t label_size   = 0.04;
-    Float_t title_offset = 1.1;
-    Float_t label_offset = 0.005;
-    TString axis_title   = "";
-  };
+
+
+  struct TLineStyle {
+    uint16_t color = 1;
+    uint16_t style = 1;
+    uint16_t width = 1;
+    float    alpha = 0.;
+
+    void SetStyle(const uint16_t col, const uint16_t sty, const uint16_t wid, const float alp) {
+      color = col;
+      style = sty;
+      width = wid;
+      alpha = alp;
+      return;
+    }  // end 'SetStyle(uint16_t, uint16_t, uint16_t, float)'
+
+    void Reset() {
+      color = 1;
+      style = 1;
+      width = 1;
+      alpha = 0.;
+      return;
+    }  // end 'Reset()'
+  };  // end TLineStyle def
+
+
+
+  struct TFillStyle {
+    uint16_t color = 1;
+    uint16_t style = 1;
+    float    alpha = 0.;
+
+    void SetStyle(const uint16_t col, const uint16_t sty, const float alp) {
+      color = col;
+      style = sty;
+      alpha = alp;
+      return;
+    }
+
+    void Reset() {
+      color = 1;
+      style = 1;
+      alpha = 0.;
+      return;
+    }  // end 'Reset()'
+  };  // end TFillStyle def
+
+
+
+  struct TTitleStyle {
+    uint16_t color  = 1;
+    uint16_t center = 0;
+    uint16_t font   = 42;
+    float    size   = 0.04;
+    float    alpha  = 0.;
+    float    offset = 1.1;
+    string   title  = "";
+  };  // end TTitleStyle def
+
+
+
+  struct TLabelStyle {
+    uint16_t color  = 1;
+    uint16_t font   = 42;
+    float    size   = 0.04;
+    float    alpha  = 0.;
+    float    offset = 0.005;
+  };  // end TLabelStyle def
+
+
+
+  struct TAxisStyle {
+    TTitleStyle title;
+    TLabelStyle label;
+  };  // end TAxisStyle
 
 //end -------------------------------------------------------------------------
