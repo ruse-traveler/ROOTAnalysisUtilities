@@ -113,6 +113,28 @@ namespace TGraphicalHelper {
     float    alpha  = 0.;
     float    offset = 1.1;
     string   title  = "";
+
+    void SetStyle(const uint16_t col, const uint16_t cen, const uint16_t fon, const float siz, const float alp, const float off, const string ttl) {
+      color  = col;
+      center = cen;
+      font   = fon;
+      size   = siz;
+      alpha  = alp;
+      offset = off;
+      title  = ttl;
+      return;
+    }  // end 'SetStyle(uint16_t, uint16_t, uint16_t, float, float, float, string)'
+
+    void Reset() {
+      color  = 1;
+      center = 0;
+      font   = 42;
+      size   = 0.04;
+      alpha  = 0.;
+      offset = 1.1;
+      title  = "";
+      return;
+    }  // end 'Reset()'
   };  // end TTitleStyle def
 
 
@@ -123,6 +145,24 @@ namespace TGraphicalHelper {
     float    size   = 0.04;
     float    alpha  = 0.;
     float    offset = 0.005;
+
+    void SetStyle(const uint16_t col, const uint16_t fon, const float siz, const float alp, const float off) {
+      color  = col;
+      font   = fon;
+      size   = siz;
+      alpha  = alp;
+      offset = off;
+      return;
+    }  // end 'SetStyle(uint16_t, uint16_t, float, float, float)'
+
+    void Rest() {
+      color  = 1;
+      font   = 42;
+      size   = 0.04;
+      alpha  = 0.;
+      offset = 0.005;
+      return;
+    }  // end 'Reset()'
   };  // end TLabelStyle def
 
 
@@ -130,6 +170,18 @@ namespace TGraphicalHelper {
   struct TAxisStyle {
     TTitleStyle title;
     TLabelStyle label;
+
+    void SetStyle(const TTitleStyle ttl, const TLabelStyle lab) {
+      title = ttl;
+      label = lab;
+      return;
+    }  // 'SetStyle(TTitleStyle, TLabelStyle)'
+
+    void Reset() {
+      title.Reset();
+      label.Reset();
+      return;
+    }  // end 'Reset()'
   };  // end TAxisStyle
 
 //end -------------------------------------------------------------------------
