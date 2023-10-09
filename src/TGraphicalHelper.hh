@@ -8,7 +8,10 @@
 // ROOT.
 // ----------------------------------------------------------------------------
 
+#include <map>
 #include <string>
+#include <cassert>
+
 
 
 namespace TGraphicalHelper {
@@ -155,7 +158,7 @@ namespace TGraphicalHelper {
       return;
     }  // end 'SetStyle(uint16_t, uint16_t, float, float, float)'
 
-    void Rest() {
+    void Reset() {
       color  = 1;
       font   = 42;
       size   = 0.04;
@@ -183,5 +186,41 @@ namespace TGraphicalHelper {
       return;
     }  // end 'Reset()'
   };  // end TAxisStyle
+
+
+
+  struct TAxisDef {
+    size_t nbins = 1;
+    double start = 0.;
+    double stop  = 1.;
+
+    // for variable binning
+    std::vector<double> bins;
+
+    void SetBins(const size_t num, const double begin, const double end) {
+      nbins = num;
+      start = begin;
+      stop  = end;
+      return;
+    }  // end 'SetBins(size_t, double, double)'
+
+    void SetVariableBins(const std::vector<double> vecBins) {
+      bins  = vecBins;
+      nbins = vecBins.size() + 1;
+      return;
+    }  // end 'SetVariableBins(size_t, vector<double>)'
+  };  // end 'TAxisDef'
+
+
+
+  struct TH1Def {
+    string name  = "";
+    string title = "";
+
+    // axes
+    std::array<TAxisDef, 1> axis;
+  };  // end 'TH1Def'
+
+}  // end TGraphicalHelper namespace
 
 //end -------------------------------------------------------------------------
