@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// 'TGraphicalUtility.attributes.hh'
+// 'TGraphicalHelper.attributes.hh'
 // Derek Anderson
 // 01.11.2022
 //
@@ -10,13 +10,13 @@
 
 #pragma once
 
-#include "TGraphicalUtility.hh"
+#include "TGraphicalHelper.hh"
 
 
 
 // attribute style setters ----------------------------------------------------
 
-template <typename Type> void TGraphicalUtility::set_marker_style(Type *to_be_styled, const TMarkerStyle style) {
+template <typename Type> void TGraphicalHelper::set_marker_style(Type *to_be_styled, const TMarkerStyle style) {
 
   to_be_styled -> SetMarkerColorAlpha(style.marker_color, style.marker_alpha);
   to_be_styled -> SetMarkerStyle(style.marker_style);
@@ -27,7 +27,7 @@ template <typename Type> void TGraphicalUtility::set_marker_style(Type *to_be_st
 
 
 
-template <typename Type> void TGraphicalUtility::set_line_style(Type *to_be_styled, const TLineStyle style) {
+template <typename Type> void TGraphicalHelper::set_line_style(Type *to_be_styled, const TLineStyle style) {
 
   to_be_styled -> setLineColorAlpha(style.line_color, style.line_alpha);
   to_be_styled -> SetLineStyle(style.line_style);
@@ -38,7 +38,7 @@ template <typename Type> void TGraphicalUtility::set_line_style(Type *to_be_styl
 
 
 
-template <typename Type> void TGraphicalUtility::set_fill_style(Type *to_be_styled, const TFillStyle style) {
+template <typename Type> void TGraphicalHelper::set_fill_style(Type *to_be_styled, const TFillStyle style) {
 
   to_be_styled -> SetFillColorAlpha(style.fill_color, style.fill_alpha);
   to_be_styled -> SetFillStyle(style.fill_style);
@@ -48,7 +48,7 @@ template <typename Type> void TGraphicalUtility::set_fill_style(Type *to_be_styl
 
 
 
-template <typename Type> void TGraphicalUtility::set_axis_style(Type *to_be_styled, const TAxisStyle style, const Axis axis) {
+template <typename Type> void TGraphicalHelper::set_axis_style(Type *to_be_styled, const TAxisStyle style, const Axis axis) {
 
   switch (TGraphicalHelper::axis) {
     case x:

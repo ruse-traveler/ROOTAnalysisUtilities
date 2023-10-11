@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// 'TGraphicalUtility.cc'
+// 'TGraphicalHelper.cc'
 // Derek Anderson
 // 01.10.2022
 //
@@ -8,11 +8,11 @@
 // histograms) in ROOT
 // ----------------------------------------------------------------------------
 
-#define TGraphicalUtility_cc
+#define TGraphicalHelper_cc
 
 // header includes
-#include "TGraphicalUtility.hh"
-#include "TGraphicalUtility.attributes.hh"
+#include "TGraphicalHelper.hh"
+#include "TGraphicalHelper.attributes.hh"
 
 using namespace std;
 
@@ -20,7 +20,7 @@ using namespace std;
 
 // set object style -----------------------------------------------------------
 
-template <typename Type> void TGraphicalUtility::set_style(Type *to_be_styled) {
+template <typename Type> void TGraphicalHelper::set_style(Type *to_be_styled) {
 
   /* TODO implement */
   return;
