@@ -1,5 +1,5 @@
 // ----------------------------------------------------------------------------
-// 'TGraphicalHelper.h'
+// 'TGraphicalHelper.hh'
 // Derek Anderson
 // 01.10.2022
 //
@@ -8,16 +8,23 @@
 // histograms) in ROOT
 // ----------------------------------------------------------------------------
 
-#ifndef TGraphicalHelper_h
-#define TGraphicalHelper_h
+#ifndef TGraphicalHelper_hh
+#define TGraphicalHelper_hh
 
 // standard c includes
-/* will go here */
+#include <string>
+#include <vector>
+#include <utility>
 // root includes
 #include <TROOT.h>
+#include <TLegend.h>
+#include <TPaveText.h>
 // helper namespace
-#include "TGraphicalUtitlities.hh"
+#include "TGraphicalUtilities.hh"
 
+// make common namespaces implicit
+using namespace std;
+using namespace TGraphicalUtilities;
 
 
 // TGraphicalHelper definition -----------------------------------------------
@@ -30,16 +37,13 @@ class TGraphicalHelper {
     TGraphicalHelper() {};
     ~TGraphicalHelper();
 
-    // set object style
-    template <typename Type> void set_style(Type *to_be_styled);
+    // makers
+    TPaveText* MakeTextBox(const SVec vecTxt, const FPair width = {0.1, 0.3}, const float yStart = 0.1, const string option = "NDC NB");
 
   private:
 
-    // attribute styles setters
-    template <typename Type> void set_marker_style(Type *to_be_styled, const TMarkerStyle style);
-    template <typename Type> void set_fill_style(Type *to_be_styled, const TFillStyle style);
-    template <typename Type> void set_line_style(Type *to_be_styled, const TLineStyle style);
-    template <typename Type> void set_axis_style(Type *to_be_styled, const TAxisStyle style, const Axis axis);
+    // general options
+    TTextStyle _txtStyle;
 
 };
 

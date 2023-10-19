@@ -16,6 +16,21 @@
 
 namespace TGraphicalUtitlities {
 
+  // typedefs -----------------------------------------------------------------
+
+  typedef std::vector<string>     SVec;
+  typedef std::pair<float, float> FPair;
+
+
+
+  // constants ----------------------------------------------------------------
+
+  namespace {
+    const size_t _NMaxAxes  = 3;
+  };
+
+
+
   // enums --------------------------------------------------------------------
 
   enum Axis {
@@ -34,7 +49,9 @@ namespace TGraphicalUtitlities {
     TGraph2D
   };
 
-  // style types -----------------------------------------------------------------
+
+
+  // style definitions -----------------------------------------------------------
 
   struct TMarkerStyle {
     uint16_t color = 1;
@@ -214,7 +231,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  // object types -------------------------------------------------------------
+  // object definitions -------------------------------------------------------
 
   struct TAxisDef {
     size_t nbins = 1;
@@ -253,7 +270,7 @@ namespace TGraphicalUtitlities {
     string title = "";
 
     // axes
-    std::array<TAxisDef, 3> axes;
+    std::array<TAxisDef, _NMaxAxes> axes;
 
     void SetNameAndTitle(const string nam, const string ttl) {
       name  = nam;
