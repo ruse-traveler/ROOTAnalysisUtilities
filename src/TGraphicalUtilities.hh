@@ -34,7 +34,7 @@ namespace TGraphicalUtitlities {
     TGraph2D
   };
 
-  // types --------------------------------------------------------------------
+  // style types -----------------------------------------------------------------
 
   struct TMarkerStyle {
     uint16_t color = 1;
@@ -188,6 +188,33 @@ namespace TGraphicalUtitlities {
   };  // end TAxisStyle
 
 
+
+  struct TTextStyle {
+    uint16_t color   = 1;
+    uint16_t font    = 42;
+    uint16_t align   = 12;
+    float    spacing = 0.05;
+
+    void SetStyle(const uint16_t col, const uint16_t fon, const uint16_t aln, const float space) {
+      color   = col;
+      font    = fon;
+      align   = aln;
+      spacing = space;
+      return;
+    }  // end 'SetStyle(uin16_t, uint16_t, uint16_t, float)'
+
+    void Reset() {
+      color   = 1;
+      font    = 42;
+      align   = 12;
+      spacing = 0.05;
+      return;
+    }  // end 'Reset()'
+  };  // end TTextStyle
+
+
+
+  // object types -------------------------------------------------------------
 
   struct TAxisDef {
     size_t nbins = 1;
