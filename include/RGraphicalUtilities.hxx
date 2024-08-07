@@ -1,20 +1,29 @@
-// ----------------------------------------------------------------------------
-// 'TGraphicalUtitlities.hh'
-// Derek Anderson
-// 09.23.2023
-//
-// Namespace to consolidate various objects & methods
-// useful for interacting with graphical objects in
-// ROOT.
-// ----------------------------------------------------------------------------
+/// ---------------------------------------------------------------------------
+/*! \file   RGraphicalUtitlities.hxx
+ *  \author Derek Anderson
+ *  \date   08.07.2024
+ *
+ *  A namespace to consolidate various objects & methods
+ *  useful for interacting with graphical objects in
+ *  ROOT.
+ */
+/// ---------------------------------------------------------------------------
 
+// c++ utilities
 #include <map>
 #include <string>
 #include <cassert>
 
 
 
-namespace TGraphicalUtitlities {
+// ----------------------------------------------------------------------------
+//! RGraphicalUtilities
+// ----------------------------------------------------------------------------
+/*! A namespace to consolidate various interfaces
+ *  useful for interacting with graphical objects
+ *  in ROOT.
+ */
+namespace RGraphicalUtitlities {
 
   // typedefs -----------------------------------------------------------------
 
@@ -53,7 +62,7 @@ namespace TGraphicalUtitlities {
 
   // style definitions -----------------------------------------------------------
 
-  struct TMarkerStyle {
+  struct RMarkerStyle {
     uint16_t color = 1;
     uint16_t style = 1;
     float    alpha = 0.;
@@ -78,7 +87,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TLineStyle {
+  struct RLineStyle {
     uint16_t color = 1;
     uint16_t style = 1;
     uint16_t width = 1;
@@ -103,7 +112,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TFillStyle {
+  struct RFillStyle {
     uint16_t color = 1;
     uint16_t style = 1;
     float    alpha = 0.;
@@ -125,7 +134,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TTitleStyle {
+  struct RTitleStyle {
     uint16_t color  = 1;
     uint16_t center = 0;
     uint16_t font   = 42;
@@ -159,7 +168,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TLabelStyle {
+  struct RLabelStyle {
     uint16_t color  = 1;
     uint16_t font   = 42;
     float    size   = 0.04;
@@ -187,7 +196,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TAxisStyle {
+  struct RAxisStyle {
     TTitleStyle title;
     TLabelStyle label;
 
@@ -206,7 +215,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct TTextStyle {
+  struct RTextStyle {
     uint16_t color   = 1;
     uint16_t font    = 42;
     uint16_t align   = 12;
@@ -233,7 +242,7 @@ namespace TGraphicalUtitlities {
 
   // object definitions -------------------------------------------------------
 
-  struct TAxisDef {
+  struct RAxisDef {
     size_t nbins = 1;
     double start = 0.;
     double stop  = 1.;
@@ -265,7 +274,7 @@ namespace TGraphicalUtitlities {
 
 
 
-  struct THNDef {
+  struct RHNDef {
     string name  = "";
     string title = "";
 
@@ -292,6 +301,6 @@ namespace TGraphicalUtitlities {
     }  // end 'Reset()'
   };  // end 'THNDef'
 
-}  // end TGraphicalUtitlities namespace
+}  // end RGraphicalUtitlities namespace
 
 //end -------------------------------------------------------------------------

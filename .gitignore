@@ -1,9 +1,2 @@
-src/*
-reference/
-!src/TGraphicalUtilities.hh
-!src/TGraphicalHelper.cc
-!src/TGraphicalHelper.hh
-!src/autogen.sh
-!src/configure.ac
-!src/Makefile.am
-!src/root-build
+old/
+build/
