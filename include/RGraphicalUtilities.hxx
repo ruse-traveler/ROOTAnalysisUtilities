@@ -9,10 +9,16 @@
  */
 /// ---------------------------------------------------------------------------
 
+#ifndef RGraphicalUtilities_hxx
+#define RGraphicalUtilities_hxx
+
 // c++ utilities
 #include <map>
 #include <string>
 #include <cassert>
+
+// attributes
+#include "Attributes/Attributes.hxx"
 
 
 
@@ -57,186 +63,6 @@ namespace RGraphicalUtitlities {
     TGraph,
     TGraph2D
   };
-
-
-
-  // style definitions -----------------------------------------------------------
-
-  struct RMarkerStyle {
-    uint16_t color = 1;
-    uint16_t style = 1;
-    float    alpha = 0.;
-    float    size  = 1.;
-
-    void SetStyle(const uint16_t col, const uint16_t sty, const float alp, const float siz) {
-      color = col;
-      style = sty;
-      alpha = alp;
-      size  = siz;
-      return;
-    }  // end 'SetStyle(uint16_t, uint16_t, float, float)'
-
-    void Reset() {
-      color = 1;
-      style = 1;
-      alpha = 0.;
-      size  = 1.;
-      return;
-    }  // end 'Reset()' 
-  };  // end TMarkerStyle def
-
-
-
-  struct RLineStyle {
-    uint16_t color = 1;
-    uint16_t style = 1;
-    uint16_t width = 1;
-    float    alpha = 0.;
-
-    void SetStyle(const uint16_t col, const uint16_t sty, const uint16_t wid, const float alp) {
-      color = col;
-      style = sty;
-      width = wid;
-      alpha = alp;
-      return;
-    }  // end 'SetStyle(uint16_t, uint16_t, uint16_t, float)'
-
-    void Reset() {
-      color = 1;
-      style = 1;
-      width = 1;
-      alpha = 0.;
-      return;
-    }  // end 'Reset()'
-  };  // end TLineStyle def
-
-
-
-  struct RFillStyle {
-    uint16_t color = 1;
-    uint16_t style = 1;
-    float    alpha = 0.;
-
-    void SetStyle(const uint16_t col, const uint16_t sty, const float alp) {
-      color = col;
-      style = sty;
-      alpha = alp;
-      return;
-    }
-
-    void Reset() {
-      color = 1;
-      style = 1;
-      alpha = 0.;
-      return;
-    }  // end 'Reset()'
-  };  // end TFillStyle def
-
-
-
-  struct RTitleStyle {
-    uint16_t color  = 1;
-    uint16_t center = 0;
-    uint16_t font   = 42;
-    float    size   = 0.04;
-    float    alpha  = 0.;
-    float    offset = 1.1;
-    string   title  = "";
-
-    void SetStyle(const uint16_t col, const uint16_t cen, const uint16_t fon, const float siz, const float alp, const float off, const string ttl) {
-      color  = col;
-      center = cen;
-      font   = fon;
-      size   = siz;
-      alpha  = alp;
-      offset = off;
-      title  = ttl;
-      return;
-    }  // end 'SetStyle(uint16_t, uint16_t, uint16_t, float, float, float, string)'
-
-    void Reset() {
-      color  = 1;
-      center = 0;
-      font   = 42;
-      size   = 0.04;
-      alpha  = 0.;
-      offset = 1.1;
-      title  = "";
-      return;
-    }  // end 'Reset()'
-  };  // end TTitleStyle def
-
-
-
-  struct RLabelStyle {
-    uint16_t color  = 1;
-    uint16_t font   = 42;
-    float    size   = 0.04;
-    float    alpha  = 0.;
-    float    offset = 0.005;
-
-    void SetStyle(const uint16_t col, const uint16_t fon, const float siz, const float alp, const float off) {
-      color  = col;
-      font   = fon;
-      size   = siz;
-      alpha  = alp;
-      offset = off;
-      return;
-    }  // end 'SetStyle(uint16_t, uint16_t, float, float, float)'
-
-    void Reset() {
-      color  = 1;
-      font   = 42;
-      size   = 0.04;
-      alpha  = 0.;
-      offset = 0.005;
-      return;
-    }  // end 'Reset()'
-  };  // end TLabelStyle def
-
-
-
-  struct RAxisStyle {
-    TTitleStyle title;
-    TLabelStyle label;
-
-    void SetStyle(const TTitleStyle ttl, const TLabelStyle lab) {
-      title = ttl;
-      label = lab;
-      return;
-    }  // 'SetStyle(TTitleStyle, TLabelStyle)'
-
-    void Reset() {
-      title.Reset();
-      label.Reset();
-      return;
-    }  // end 'Reset()'
-  };  // end TAxisStyle
-
-
-
-  struct RTextStyle {
-    uint16_t color   = 1;
-    uint16_t font    = 42;
-    uint16_t align   = 12;
-    float    spacing = 0.05;
-
-    void SetStyle(const uint16_t col, const uint16_t fon, const uint16_t aln, const float space) {
-      color   = col;
-      font    = fon;
-      align   = aln;
-      spacing = space;
-      return;
-    }  // end 'SetStyle(uin16_t, uint16_t, uint16_t, float)'
-
-    void Reset() {
-      color   = 1;
-      font    = 42;
-      align   = 12;
-      spacing = 0.05;
-      return;
-    }  // end 'Reset()'
-  };  // end TTextStyle
 
 
 
@@ -302,5 +128,7 @@ namespace RGraphicalUtitlities {
   };  // end 'THNDef'
 
 }  // end RGraphicalUtitlities namespace
+
+#endif
 
 //end -------------------------------------------------------------------------
