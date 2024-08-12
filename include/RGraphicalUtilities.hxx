@@ -1,5 +1,5 @@
 /// ---------------------------------------------------------------------------
-/*! \file   RGraphicalUtitlities.hxx
+/*! \file   RGraphicalUtilities.hxx
  *  \author Derek Anderson
  *  \date   08.07.2024
  *
@@ -17,8 +17,13 @@
 #include <string>
 #include <cassert>
 
-// attributes
+// components
 #include "Attributes/Attributes.hxx"
+#include "Elements/Elements.hxx"
+#include "Objects/Objects.hxx"
+
+// alias for convenience
+using RGU = RGraphicalUtilities;
 
 
 
@@ -67,65 +72,6 @@ namespace RGraphicalUtitlities {
 
 
   // object definitions -------------------------------------------------------
-
-  struct RAxisDef {
-    size_t nbins = 1;
-    double start = 0.;
-    double stop  = 1.;
-
-    // for variable binning
-    std::vector<double> bins;
-
-    void SetBins(const size_t num, const double begin, const double end) {
-      nbins = num;
-      start = begin;
-      stop  = end;
-      return;
-    }  // end 'SetBins(size_t, double, double)'
-
-    void SetVariableBins(const std::vector<double> vecBins) {
-      bins  = vecBins;
-      nbins = vecBins.size() + 1;
-      return;
-    }  // end 'SetVariableBins(size_t, vector<double>)'
-
-    void Reset() {
-      nBins = 1;
-      start = 0;
-      stop  = 1;
-      bins.clear();
-      return;
-    }  // end 'Reset()'
-  };  // end 'TAxisDef'
-
-
-
-  struct RHNDef {
-    string name  = "";
-    string title = "";
-
-    // axes
-    std::array<TAxisDef, _NMaxAxes> axes;
-
-    void SetNameAndTitle(const string nam, const string ttl) {
-      name  = nam;
-      title = ttl;
-      return;
-    }  // end 'SetNameAndTitle(string, string)'
-
-    void SetAxis(const TGraphicalUtitlities::Axis axis, const TAxisDef def) {
-      axes[axis] = def;
-      return;
-    }  // end 'SetAxis(TGraphicalUtitlities::Axis, TAxisDef)'
-
-    void Reset() {
-      name = "";
-      title = "";
-      for (auto axis : axes) {
-        axis.Reset();
-      }
-    }  // end 'Reset()'
-  };  // end 'THNDef'
 
 }  // end RGraphicalUtitlities namespace
 
