@@ -1,4 +1,4 @@
-# RGraphicalUtility [Under Construction]
+# ROOTAnalysisUtilities [Under Construction]
 
-A library to streamline interacting with graphical objects in ROOT (i.e. things that can be
-drawn or drawn on such as histograms and canvases).
+A library to streamline interacting with certain objects in ROOT6 and earlier,
+especially graphical objects (i.e. things that can be drawn) and TNtuple's.
