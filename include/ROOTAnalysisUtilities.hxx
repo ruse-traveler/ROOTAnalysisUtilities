@@ -9,16 +9,16 @@
  */
 /// ===========================================================================
 
-#ifndef ROOTAnalysisUtilities_hxx
-#define ROOTAnalysisUtilities_hxx
+#ifndef ROOTANALYSISUTILITIES_HXX
+#define ROOTANALYSISUTILITIES_HXX
 
 // components
 //   - TODO organize
-#include "GraphHelper.hxx"
-#include "HistHelper.hxx"
-#include "NTupleHelper.hxx"
-#include "PlotHelper.hxx"
-#include "TMVAHelper.hxx"
+#include "graph/Graph.hxx"
+#include "hist/HistHelper.hxx"
+#include "ntuple/NTupleHelper.hxx"
+#include "plot/PlotHelper.hxx"
+#include "tmva/TMVAHelper.hxx"
 
 // alias for convenience
 using RAU = ROOTAnalysisUtilities;

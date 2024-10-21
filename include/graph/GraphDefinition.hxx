@@ -1,132 +1,33 @@
 /// ===========================================================================
-/*! \file   GraphHelper.hxx
+/*! \file   GraphDefinition.hxx
  *  \author Derek Anderson
- *  \date   09.29.2024
+ *  \date   10.21.2024
  *
- *  A lightweight namespace to help work with graphs.
+ *  Interface to TGraph and derived classes.
  */
 /// ===========================================================================
 
-#ifndef GraphHelper_hxx
-#define GraphHelper_hxx
+#ifndef RAU_GRAPHDEFINITION_HXX
+#define RAU_GRAPHDEFINITION_HXX
 
 // c++ utilities
-#include <map>
-#include <limits>
 #include <string>
 #include <vector>
-#include <cassert>
-#include <utility>
-#include <optional>
-#include <algorithm>
 // root libraries
 #include <TGraph.h>
-#include <TGraphErrors.h>
 #include <TGraphAsymmErrors.h>
+#include <TGraphErrors.h>
+// library components
+#include "GraphPoint.hxx"
 
 
 
 namespace ROOTAnalysisUtilities {
+  namespace Graph {
 
-  // ============================================================================
-  //! Graph Helper
-  // ============================================================================
-  /*! A small namespace to help work with
-   *  ROOT graphs.
-   *
-   *  TODO split up into headers, organize
-   */
-  namespace GraphHelper {
-
-    // ==========================================================================
-    //! Point
-    // ==========================================================================
-    /*! A small struct to consolidate data
-     *  for a point on a graph
-     */
-    struct Point {
-
-      // members
-      double x;
-      double y;
-      double ex;
-      double ex_lo;
-      double ex_hi;
-      double ey;
-      double ey_lo;
-      double ey_hi;
-
-      // ------------------------------------------------------------------------
-      //! default ctor/dtor
-      // ------------------------------------------------------------------------
-      Point()  {};
-      ~Point() {};
-
-      // ------------------------------------------------------------------------
-      //! ctor without errors
-      // ------------------------------------------------------------------------
-      Point(const double x_arg, const double y_arg) {
-
-        x     = x_arg;
-        y     = y_arg;
-        ex    = 0.;
-        ex_lo = 0.;
-        ex_hi = 0.;
-        ey    = 0.;
-        ey_lo = 0.;
-        ey_hi = 0.;
-
-      }  // end ctor(double, double)
-
-      // ------------------------------------------------------------------------
-      //! ctor accepting symmetric errors
-      // ------------------------------------------------------------------------
-      Point(
-        const double x_arg,
-        const double y_arg,
-        const double ex_arg,
-        const double ey_arg
-      ) {
-
-        x     = x_arg;
-        y     = y_arg;
-        ex    = ex_arg;
-        ex_lo = ex_arg / 2.;
-        ex_hi = ex_arg / 2.;
-        ey    = ey_arg;
-        ey_lo = ey_arg / 2.;
-        ey_hi = ey_arg / 2.;
-
-      }  // end ctor(double, double, double, double)'
-
-      // ------------------------------------------------------------------------
-      //! ctor accepting asymmetric errors
-      // ------------------------------------------------------------------------
-      Point(
-        const double x_arg,
-        const double y_arg,
-        const std::pair<double, double> ex_arg,
-        const std::pair<double, double> ey_arg
-      ) {
-
-        x     = x_arg;
-        y     = y_arg;
-        ex_lo = ex_arg.first;
-        ex_hi = ex_arg.second;
-        ex    = ex_arg.first + ex_arg.second;
-        ey_lo = ey_arg.first;
-        ey_hi = ey_arg.second;
-        ey    = ey_arg.first + ey_arg.second;
-
-      }  // end ctor(double, double, std::pair<double, double>, std::pair<double, double>)
-
-    };   // end Point 
-
-
-
-    // ==========================================================================
+    // ========================================================================
     //! Graph definition
-    // ==========================================================================
+    // ========================================================================
     /*! A small class to consolidate necessary data
      *  to define a TGraph, TGraphErrors, or
      *  TGraphAsymmErrors
@@ -136,15 +37,15 @@ namespace ROOTAnalysisUtilities {
       private:
 
         // options for accessing specific members of a point
-        enum Member {X, Y, EX, EXlo, EXhi, EY, EYlo, EYhi};
+        enum class Member {X, Y, EX, EXlo, EXhi, EY, EYlo, EYhi};
 
         // data members
         std::string        m_name;
         std::vector<Point> m_points;
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Helper method to pull a vector of x, y, etc. from a vector of points
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         std::vector<double> GetMembers(const Member member) const {
 
           std::vector<double> members;
@@ -197,21 +98,21 @@ namespace ROOTAnalysisUtilities {
 
       public:
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Getters
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         std::string        GetName()   const {return m_name;}
         std::vector<Point> GetPoints() const {return m_points;}
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Setters
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         void SetName(const std::string& name)            {m_name = name;}
         void SetPoints(const std::vector<Point>& points) {m_points = points;}
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Reset points
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         void ResetPoints() {
 
           m_points.clear();
@@ -219,9 +120,9 @@ namespace ROOTAnalysisUtilities {
 
         }  // end 'ResetPoints()'
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Add a point
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         void AddPoint(const Point& point) {
 
           m_points.push_back(point);
@@ -229,9 +130,9 @@ namespace ROOTAnalysisUtilities {
 
         }  // end 'AddPoint(Point&)'
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Make a TGraph
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         TGraph* MakeTGraph() const {
 
           // decompose points
@@ -249,9 +150,9 @@ namespace ROOTAnalysisUtilities {
 
         }  // end 'MakeTGraph()'
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Make a TGraphErrors
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         TGraphErrors* MakeTGraphErrors() const {
 
           // decompose points
@@ -273,9 +174,9 @@ namespace ROOTAnalysisUtilities {
 
         }  // end 'MakeTGraphErrors()'
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Make a TGraphAsymmErrors
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         TGraphAsymmErrors* MakeTGraphAsymmErrors() const {
 
           // decompose points
@@ -301,15 +202,15 @@ namespace ROOTAnalysisUtilities {
 
         }  // end 'MakeTGraphAsymmErrors()'
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! default ctor/dtor
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         Definition()  {};
         ~Definition() {};
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! ctor accepting a name
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         Definition(const std::string& name) {
 
           SetName(name);
@@ -318,9 +219,8 @@ namespace ROOTAnalysisUtilities {
 
     };  // end Definition
 
-  }  // end GraphHelper namespace
+  }  // end Graph namespace
 }  // end ROOTAnalysisUtilities namespace
-
 
 #endif
 
