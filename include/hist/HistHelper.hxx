@@ -7,8 +7,8 @@
  */
 /// ===========================================================================
 
-#ifndef HistHelper_hxx
-#define HistHelper_hxx
+#ifndef RAU_HISTHELPER_HXX
+#define RAU_HISTHELPER_HXX
 
 // c++ utilities
 #include <map>
@@ -20,8 +20,9 @@
 #include <TH1.h>
 #include <TH2.h>
 #include <TH3.h>
-#include <TGraph.h>
-#include <TGraphAsymmErrors.h>
+// dataframe related classes
+#include <ROOT/RDataFrame.hxx>
+#include <ROOT/RDF/HistoModels.hxx>
 
 
 
