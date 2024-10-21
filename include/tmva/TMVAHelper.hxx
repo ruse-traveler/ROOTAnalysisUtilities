@@ -29,11 +29,11 @@
 #include <TMVA/Factory.h>
 #include <TMVA/DataLoader.h>
 // analysis utilities
-#include "NTupleHelper.hxx"
+#include "../ntuple/NTupleHelper.hxx"
 
 
 
-namespace ROOTAnalysisUtilites {
+namespace ROOTAnalysisUtilities {
 
   // ============================================================================
   //! TMVA Helper

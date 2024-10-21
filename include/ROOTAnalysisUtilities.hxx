@@ -17,11 +17,11 @@
 #include "graph/Graph.hxx"
 #include "hist/HistHelper.hxx"
 #include "ntuple/NTupleHelper.hxx"
-#include "plot/PlotHelper.hxx"
+//#include "plot/PlotHelper.hxx"  // UNDER CONSTRUCTION
 #include "tmva/TMVAHelper.hxx"
 
 // alias for convenience
-using RAU = ROOTAnalysisUtilities;
+namespace RAU = ROOTAnalysisUtilities;
 
 #endif
 

@@ -21,8 +21,10 @@
 #include <TNtuple.h>
 
 // forward declaration of TMVAHelper::Reader
-namespace TMVAHelper {
-  class Reader;
+namespace ROOTAnalysisUtilities {
+  namespace TMVAHelper {
+    class Reader;
+  }
 }
 
 
