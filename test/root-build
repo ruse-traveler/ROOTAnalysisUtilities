@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# =============================================================================
+# @file   root-build
+# @author Derek Anderson
+# @date   09.24.2024
+#
+# Compiles implementation file via root.
+# ============================================================================
+
+# where to install files
+install=$MYINSTALL/include/ROOTAnalysisUtilities
+
+# run test compilation
+root -b -q TestAnalysisUtilities.cxx++
+
+# copy library to install directory
+if [ ! -d $install ]; then
+  mkdir $install
+fi
+cp -r ../include/* $install
+
+# end =========================================================================

@@ -8,8 +8,8 @@
  */
 /// ===========================================================================
 
-#ifndef TestGraphicalUtilities_cxx
-#define TestGraphicalUtilities_cxx
+#ifndef TestAnalysisUtilities_cxx
+#define TestAnalysisUtilities_cxx
 
 // c++ utilities
 #include <utility>
@@ -18,13 +18,11 @@
 
 
 
-// FIXME it might be more appropriate to just make a ROOT macro
-//   to be compiled...
-TEST_CASE("TestAnalysisUtilities") {
+void TestAnalysisUtilities() {
 
-  /* TODO create tests here */
+  /* TODO tests go here */
 
-}  // end tests
+}
 
 #endif
 

@@ -1,2 +1,5 @@
 old/
 build/
+test/*.d
+test/*.so
+test/*.pcm
