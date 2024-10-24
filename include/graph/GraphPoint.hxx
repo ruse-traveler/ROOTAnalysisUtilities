@@ -7,8 +7,8 @@
  */
 /// ===========================================================================
 
-#ifndef RAU_GRAPHPOINT_hxx
-#define RAU_GRAPHPOINT_hxx
+#ifndef RAU_GRAPHPOINT_HXX
+#define RAU_GRAPHPOINT_HXX
 
 // c++ utilities
 #include <limits>

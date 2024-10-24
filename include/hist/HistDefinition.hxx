@@ -1,21 +1,21 @@
 /// ===========================================================================
-/*! \file   HistHelper.hxx
+/*! \file   HistDefinition.hxx
  *  \author Derek Anderson
- *  \date   09.21.2024
+ *  \date   10.24.2024
  *
- *  A lightweight namespace to help work with histograms.
+ *  Interface to THN classes.
  */
 /// ===========================================================================
 
-#ifndef RAU_HISTHELPER_HXX
-#define RAU_HISTHELPER_HXX
+#ifndef RAU_HISTDEFINITION_HXX
+#define RAU_HISTDEFINITION_HXX
 
 // c++ utilities
+#include <algorithm>
+#include <cassert>
 #include <map>
 #include <string>
 #include <vector>
-#include <cassert>
-#include <algorithm>
 // root libraries
 #include <TH1.h>
 #include <TH2.h>
@@ -23,197 +23,13 @@
 // dataframe related classes
 #include <ROOT/RDataFrame.hxx>
 #include <ROOT/RDF/HistoModels.hxx>
+// rau components
+#include "HistBinning.hxx"
 
 
 
 namespace ROOTAnalysisUtilities {
-
-  // ============================================================================
-  //! Hist Helper
-  // ============================================================================
-  /*! A small namespace to help work with
-   *  ROOT histograms.
-   *
-   *  TODO split into multiple headers, organize
-   */
-  namespace HistHelper {
-
-    // ------------------------------------------------------------------------
-    //! Helper method to divide a range into a certain number of bins
-    // ------------------------------------------------------------------------
-    std::vector<double> GetBinEdges(
-      const std::size_t num,
-      const double start,
-      const double stop
-    ) {
-
-      // throw error if start/stop are out of order
-      // or if num is zero
-      if (num <= 0)     assert(num > 0);
-      if (start > stop) assert(start <= stop);
-
-      // set start/stop, calculate bin steps
-      const double step = (stop - start) / num;
- 
-      // instantiate vector to hold bins
-      std::vector<double> bins;
-
-      // and fill vector
-      double edge = start;
-      for (std::size_t inum = 0; inum < num; ++inum) {
-        bins.push_back( edge );
-        edge += step;
-      }
-      bins.push_back( edge );
-      return bins;
-
-    }  // end 'GetBinEdges(uint32_t, double, double)'
-
-
-
-    // ==========================================================================
-    //! Binning definition
-    // ==========================================================================
-    /*! A small class to consolidate data
-     *  for defining histogram bins.
-     */ 
-    class Binning {
-
-      private:
-
-        // data members
-        double              m_start;
-        double              m_stop;
-        uint32_t            m_num;
-        std::vector<double> m_bins;
-
-      public:
-
-        // ----------------------------------------------------------------------
-        //! Uniform bin getters
-        //-----------------------------------------------------------------------
-        uint32_t GetNum()   const {return m_num;}
-        double   GetStart() const {return m_start;}
-        double   GetStop()  const {return m_stop;}
-
-        // ----------------------------------------------------------------------
-        //! Variable bin getter
-        // ----------------------------------------------------------------------
-        std::vector<double> GetBins() const {return m_bins;}
-
-        // ----------------------------------------------------------------------
-        //! default ctor/dtor
-        // ----------------------------------------------------------------------
-        Binning()  {};
-        ~Binning() {};
-
-        // ----------------------------------------------------------------------
-        //! ctor accepting uniform parameters
-        // ----------------------------------------------------------------------
-        Binning(const uint32_t num, const double start, const double stop) {
-
-          m_num   = num;
-          m_start = start;
-          m_stop  = stop;
-          m_bins  = GetBinEdges(m_num, m_start, m_stop);
-
-        }  // end ctor(uint32_t, double, double)
-
-        // ----------------------------------------------------------------------
-        //! ctor accepting non-uniform parameters
-        // ----------------------------------------------------------------------
-        Binning(const std::vector<double> edges) {
-
-          m_bins  = edges;
-          m_num   = edges.size() - 1;
-          m_start = edges.front();
-          m_stop  = edges.back();
-
-        }  // end ctor(std::vector<double>)
-
-    };  // end Binning
-
-
-
-    // ==========================================================================
-    //! Bin Database
-    // ==========================================================================
-    /*! A class to centralize binning for
-     *  various quantities like energy, etc.
-     *  Methods are provided to update
-     *  exisiting/add new bin definitions
-     *  on the fly.
-     */
-    class Bins {
-
-      private:
-
-        std::map<std::string, Binning> m_bins = {
-          { "number",   {202, -1.5, 200.5} },
-          { "fraction", {104, -0.1, 5.1}   },
-          { "energy",   {202, -1., 100.}   },
-          { "eta",      {30 , -1.5, 1.5}   },
-          { "phi",      {320, -3.15, 3.15} }
-        };
-
-      public:
-
-        // ----------------------------------------------------------------------
-        //! Add a binning
-        // ----------------------------------------------------------------------
-        void Add(const std::string& name, const Binning& binning) {
-
-          // throw error if binning already exists
-          if (m_bins.count(name) >= 1) {
-            assert(m_bins.count(name) == 0);
-          }
-
-          // otherwise insert new binning
-          m_bins.insert( {name, binning} );
-          return;
-
-        }  // end 'Add(std::string&, Binning&)'
-
-        // ----------------------------------------------------------------------
-        //! Change a binning
-        // ----------------------------------------------------------------------
-        void Set(const std::string& variable, const Binning& binning) {
-
-          // throw error if binning doesn't exist
-          if (m_bins.count(variable) == 0) {
-            assert(m_bins.count(variable) >= 1);
-          }
-
-          // otherwise update binning
-          m_bins[variable] = binning;
-          return;
-
-        }  // end 'Set(std::string&, Binning&)'
-
-        // ----------------------------------------------------------------------
-        //! Get a binning
-        // ----------------------------------------------------------------------
-        Binning Get(const std::string& variable) {
-
-          // throw error if binning doesn't exist
-          if (m_bins.count(variable) == 0) {
-            assert(m_bins.count(variable) == 0);
-          }
-
-          // otherwise return binning
-          return m_bins[variable];
-
-        }  // end 'Get(std::string&)'
-
-        // ----------------------------------------------------------------------
-        //! default ctor/dtor
-        // ----------------------------------------------------------------------
-        Bins()  {};
-        ~Bins() {};
-
-    };  // end Bins
-
-
+  namespace Hist {
 
     // ==========================================================================
     //! Histogram definition
@@ -437,8 +253,8 @@ namespace ROOTAnalysisUtilities {
 
     };  // end Definition
 
-  }  // end HistHelper namespace
-}  // end ROOTAnalysisUtilities
+  }  // end Hist namespace
+}  // end ROOTAnalysisUtilities namespace
 
 #endif
 

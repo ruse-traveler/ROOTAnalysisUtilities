@@ -1,19 +1,21 @@
 /// ===========================================================================
-/*! \file   Graph.hxx
+/*! \file   Hist.hxx
  *  \author Derek ANderson
- *  \date   10.21.2024
+ *  \date   10.24.2024
  *
  *  A namespace to hold tools for interacting with
- *  TGraph, TGraphError, and TGraphAsymmmError.
+ *  THN and related classes.
  */
 /// ===========================================================================
 
-#ifndef RAU_GRAPH_HXX
-#define RAU_GRAPH_HXX
+#ifndef RAU_HIST_HXX
+#define RAU_HIST_HXX
 
 // components
-#include "GraphDefinition.hxx"
-#include "GraphPoint.hxx"
+#include "HistBins.hxx"
+#include "HistBinning.hxx"
+#include "HistTools.hxx"
+#include "HistDefinition.hxx"
 
 #endif
 

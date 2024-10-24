@@ -17,7 +17,7 @@
 #include <TGraph.h>
 #include <TGraphAsymmErrors.h>
 #include <TGraphErrors.h>
-// library components
+// rau components
 #include "GraphPoint.hxx"
 
 

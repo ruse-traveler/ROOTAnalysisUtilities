@@ -15,7 +15,7 @@
 // components
 //   - TODO organize
 #include "graph/Graph.hxx"
-#include "hist/HistHelper.hxx"
+#include "hist/Hist.hxx"
 #include "ntuple/NTuple.hxx"
 //#include "plot/PlotHelper.hxx"  // UNDER CONSTRUCTION
 #include "tmva/TMVAHelper.hxx"
