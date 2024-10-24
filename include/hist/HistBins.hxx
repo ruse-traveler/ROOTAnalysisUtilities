@@ -3,7 +3,7 @@
  *  \author Derek Anderson
  *  \date   10.24.2024
  *
- *  Abstract base class for a bin database.
+ *  Base class for a bin database.
  */
 /// ===========================================================================
 
