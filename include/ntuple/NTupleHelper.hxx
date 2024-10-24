@@ -3,7 +3,7 @@
  *  \author Derek Anderson
  *  \date   09.09.2024
  *
- *  A lightweight class to help work with TNTuple's.
+ *  Convenient interface to TNtuple.
  */
 /// ===========================================================================
 
