@@ -29,29 +29,82 @@ namespace ROOTAnalysisUtilities {
      *  rules that tell you how to
      *    (1) get a list of indices, given a group of arguments; and
      *    (2) get a string representation of these indices.
-     *
-     *  TODO Some thoughts:
-     *    - Maybe make size of index list a template...
-     *    - Then have a couple of members of type std::function
-     *      for the above rules?
+     *  But the thing to keep in mind is that get the index from a
+     *  generic list of arguments, you have to know the corresponding
+     *  generic list of bins...
      */ 
-    template <std::size_t N> class Index {
-
-      private:
-
-        std::array<std::size_t, N> m_values;
+    template <std::size_t N, typename... Ts> class Index {
 
       protected:
 
-        /* TODO other inheritable methods go here */
+        // data members
+        std::array<std::size_t, N> m_values;
 
       public:
 
-        // FIXME maybe THIS is the thing the user overrides?
+        // --------------------------------------------------------------------
+        //! Overloaded < operator
+        // --------------------------------------------------------------------
+        friend bool operator <(const Index& lhs, const Index& rhs) {
+          return lhs.m_values < rhs.m_values;
+        }
+
+        // --------------------------------------------------------------------
+        //! Overloaded > operator
+        // --------------------------------------------------------------------
+        friend bool operator >(const Index& lhs, const Index& rhs) {
+          return lhs.m_values > rhs.m_values;
+        }
+
+        // --------------------------------------------------------------------
+        //! Overloaded == operator
+        // --------------------------------------------------------------------
+        friend bool operator ==(const Index& lhs, const Index& rhs) {
+          return lhs.m_values == rhs.m_values;
+        }
+
+        // --------------------------------------------------------------------
+        //! Get a specific index
+        // --------------------------------------------------------------------
+        std::size_t GetIndex(const std::size_t index) const {
+          return m_values.at(index);
+        }
+
+        // --------------------------------------------------------------------
+        //! Set a specific index
+        // --------------------------------------------------------------------
+        void SetIndex(const std::size_t index, const std::size_t value) {
+          m_values.at(index) = value;
+        }
+
+        // --------------------------------------------------------------------
+        //! Set index
+        // --------------------------------------------------------------------
+        /*! Derived class must specify how to extract
+         *  index from provided arguments.
+         */  
+        virtual void Set(Ts...) = 0;
+
+        // --------------------------------------------------------------------
+        //! Get string representation
+        // --------------------------------------------------------------------
+        /*! Derived class must specify how to convert index
+         *  to string representation.
+         */
         virtual std::string Hash() = 0;
 
+        // --------------------------------------------------------------------
+        //! default ctor/dtor
+        // --------------------------------------------------------------------
         Index()  {};
         ~Index() {};
+
+        // --------------------------------------------------------------------
+        //! ctor accepting arguments
+        // --------------------------------------------------------------------
+        Index(Ts... args) {
+          Set(args...);
+        }
 
     };
 
@@ -61,4 +114,3 @@ namespace ROOTAnalysisUtilities {
 #endif
 
 // end ========================================================================
-

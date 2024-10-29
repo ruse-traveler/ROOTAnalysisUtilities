@@ -14,7 +14,7 @@
 // components
 #include "HistBins.hxx"
 #include "HistBinning.hxx"
-//#include "HistIndex.hxx"  // under construction
+#include "HistIndex.hxx"
 //#include "HistManager.hxx"  // under construction
 #include "HistTools.hxx"
 #include "HistDefinition.hxx"
