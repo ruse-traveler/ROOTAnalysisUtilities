@@ -15,7 +15,7 @@
 #include "HistBins.hxx"
 #include "HistBinning.hxx"
 #include "HistIndex.hxx"
-//#include "HistManager.hxx"  // under construction
+#include "HistManager.hxx"
 #include "HistTools.hxx"
 #include "HistDefinition.hxx"
 

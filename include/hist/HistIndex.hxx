@@ -23,15 +23,16 @@ namespace ROOTAnalysisUtilities {
     //! Histogram Index
     // ========================================================================
     /*! Base class for a "histogram index", a collection
-     *  of indices of various bins.
+     *  of indices of various bins. When specializing for
+     *  a use case, the user needs to:
+     *    (1) define how to translate a list of arguments into
+     *        an integer; and
+     *    (2) define how to turn an index into a string
+     *        representation.
      *
-     *  TODO the idea here is that specializations somehow provide
-     *  rules that tell you how to
-     *    (1) get a list of indices, given a group of arguments; and
-     *    (2) get a string representation of these indices.
-     *  But the thing to keep in mind is that get the index from a
-     *  generic list of arguments, you have to know the corresponding
-     *  generic list of bins...
+     *  FIXME might be able to also set up some metaprogramming
+     *  that forces the user to define what bins to expect
+     *  given what arguments they provide...
      */ 
     template <std::size_t N, typename... Ts> class Index {
 
