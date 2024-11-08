@@ -13,12 +13,11 @@
 #define ROOTANALYSISUTILITIES_HXX
 
 // components
-//   - TODO organize
 #include "graph/Graph.hxx"
 #include "hist/Hist.hxx"
 #include "ntuple/NTuple.hxx"
 //#include "plot/PlotHelper.hxx"  // UNDER CONSTRUCTION
-#include "tmva/TMVAHelper.hxx"
+#include "mva/MVA.hxx"
 
 // alias for convenience
 namespace RAU = ROOTAnalysisUtilities;

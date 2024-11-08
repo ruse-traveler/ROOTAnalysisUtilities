@@ -22,8 +22,8 @@
 
 // forward declaration of TMVAHelper::Reader
 namespace ROOTAnalysisUtilities {
-  namespace TMVAHelper {
-    class Reader;
+  namespace MVA {
+    class ReadHelper;
   }
 }
 
@@ -171,8 +171,8 @@ namespace ROOTAnalysisUtilities {
 
       }  // end ctor(TNtuple*)
 
-      // make TMVAHelper::Reader a friend
-      friend class TMVAHelper::Reader;
+      // make MVA::ReadHelper a friend
+      friend class MVA::ReadHelper;
 
   };    // end NTupleHelper
 
