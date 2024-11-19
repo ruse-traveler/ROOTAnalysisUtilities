@@ -56,8 +56,10 @@ namespace PlotHelper {
   typedef std::vector<TObject*>              Objects;
   typedef std::vector<std::string>           TextList;
   typedef std::vector<std::string>           LabelList;
+  typedef std::pair<float, float>            Range;
   typedef std::pair<uint32_t, uint32_t>      Dimensions;
   typedef std::map<std::string, std::size_t> LabelToIndexMap;
+
 
 
   // ==========================================================================
@@ -78,7 +80,11 @@ namespace PlotHelper {
   /*! Helper function to calculate how high a text box/legend
    *  should be based on line spacing and no. of lines.
    */
-  float GetHeight(const std::size_t nlines, const float spacing, std::optional<float> off) {
+  float GetHeight(
+    const std::size_t nlines,
+    const float spacing,
+    std::optional<float> off = std::nullopt
+  ) {
 
     float height = nlines * spacing;
     if (off.has_value()) {
@@ -87,6 +93,51 @@ namespace PlotHelper {
     return height;
 
   }  // end 'GetHeight(std::size_t float, std::optional<float>)'
+
+
+
+  // ==========================================================================
+  //! Plot range
+  // ==========================================================================
+  /*! This struct groups together the start/stop
+   *  points for all 3 axes for convenience.
+   */
+  struct PlotRange {
+
+    // members
+    Range x;
+    Range y;
+    Range z;
+
+    // ------------------------------------------------------------------------
+    //! default ctor/dtor
+    // ------------------------------------------------------------------------
+    PlotRange()  {};
+    ~PlotRange() {};
+
+    // ------------------------------------------------------------------------
+    //! ctor accepting only x range
+    // ------------------------------------------------------------------------
+    PlotRange(const Range& xrange) {
+      x = xrange;
+    }
+
+    // ------------------------------------------------------------------------
+    //! ctor accepting x, y, and possibly z range
+    // ------------------------------------------------------------------------
+    PlotRange(
+      const Range& xrange,
+      const Range& yrange,
+      std::optional<Range> zrange = std::nullopt
+    ) {
+      x = xrange;
+      y = yrange;
+      if (zrange.has_value()) {
+        z = zrange.value();
+      }
+    }
+
+  };  // end PlotRange
 
 
 
@@ -111,11 +162,11 @@ namespace PlotHelper {
       struct Plot {
 
         // members
-        uint32_t color;
-        uint32_t marker;
-        uint32_t fill;
-        uint32_t line;
-        uint32_t width;
+        uint32_t color  = 1;
+        uint32_t marker = 1;
+        uint32_t fill   = 0;
+        uint32_t line   = 1;
+        uint32_t width  = 1;
 
         // ----------------------------------------------------------------------
         //! default ctor/dtor
@@ -151,10 +202,10 @@ namespace PlotHelper {
       struct Text {
 
         // members
-        uint32_t color;
-        uint32_t font;
-        uint32_t align;
-        float    spacing;
+        uint32_t color   = 1;
+        uint32_t font    = 42;
+        uint32_t align   = 12;
+        float    spacing = 0.05;
 
         // ---------------------------------------------------------------------
         //! default ctor/dtor
@@ -168,7 +219,7 @@ namespace PlotHelper {
         Text(
           const uint32_t col_arg,
           const uint32_t fon_arg,
-          const uint32_t aln_arg,
+          const uint32_t aln_arg = 12,
           const float    spa_arg = 0.05
         ) {
           color   = col_arg;
@@ -188,10 +239,10 @@ namespace PlotHelper {
       struct Label {
 
         // members
-        uint32_t color;
-        uint32_t font;
-        float    size;
-        float    offset;
+        uint32_t color  = 1;
+        uint32_t font   = 42;
+        float    size   = 0.04;
+        float    offset = 0.005;
 
         // --------------------------------------------------------------------
         //! default ctor/dtor
@@ -226,11 +277,11 @@ namespace PlotHelper {
       struct Title {
 
         // members
-        uint32_t color;
-        uint32_t center;
-        uint32_t font;
-        float    size;
-        float    offset;
+        uint32_t color  = 1;
+        uint32_t center = 0;
+        uint32_t font   = 42;
+        float    size   = 0.04;
+        float    offset = 1.0;
 
         // --------------------------------------------------------------------
         //! defualt ctor/dtor
@@ -382,7 +433,7 @@ namespace PlotHelper {
       // ----------------------------------------------------------------------
       /*! Note that this method is valid for a TF1, TF2, or TF3.
        */ 
-      void ApplyStyle(TF1* func) const {
+      void Apply(TF1* func) const {
 
         func -> SetFillColor( m_plot.color );
         func -> SetFillStyle( m_plot.fill );
@@ -414,14 +465,14 @@ namespace PlotHelper {
         func -> GetZaxis() -> SetLabelOffset( m_labels[Axis::Z].offset );
         return;
 
-      }  // end 'ApplyStyle(TFN*)'
+      }  // end 'Apply(TFN*)'
 
       // ----------------------------------------------------------------------
       //! Apply styles to a histogram
       // ----------------------------------------------------------------------
       /*! Note that this method is valid for a TH1, TH2, or TH3.
        */ 
-      void ApplyStyle(TH1* hist) const {
+      void Apply(TH1* hist) const {
 
         hist -> SetFillColor( m_plot.color );
         hist -> SetFillStyle( m_plot.fill );
@@ -454,7 +505,7 @@ namespace PlotHelper {
         hist -> GetZaxis() -> SetLabelOffset( m_labels[Axis::Z].offset );
         return;
 
-      }  // end 'ApplyStyle(TH1*)'
+      }  // end 'Apply(TH1*)'
 
       // ----------------------------------------------------------------------
       //! Apply styles to a 1D graph
@@ -462,8 +513,13 @@ namespace PlotHelper {
       /*! Note that this method is valid for TGraph, TGraphErrors, and
        *  TGraphAsymmErrors.
        */ 
-      void ApplyStyle(TGraph* graph) const {
+      void Apply(TGraph* graph) const {
 
+        graph -> SetFillColor( m_plot.color );
+        graph -> SetFillStyle( m_plot.fill );
+        graph -> SetLineColor( m_plot.color );
+        graph -> SetLineStyle( m_plot.line );
+        graph -> SetLineWidth( m_plot.width );
         graph -> SetMarkerColor( m_plot.color );
         graph -> SetMarkerStyle( m_plot.marker );
         graph -> GetXaxis() -> CenterTitle( m_titles[Axis::X].center );
@@ -482,15 +538,20 @@ namespace PlotHelper {
         graph -> GetYaxis() -> SetLabelOffset( m_labels[Axis::Y].offset );
         return;
 
-      }  // end 'ApplyStyle(TGraph*)'
+      }  // end 'Apply(TGraph*)'
 
       // ----------------------------------------------------------------------
       //! Apply styles to a 2D graph
       // ----------------------------------------------------------------------
       /*! Note that this method is valid for TGraph2D and TGraph2DErrors.
        */ 
-      void ApplyStyle(TGraph2D* graph) const {
+      void Apply(TGraph2D* graph) const {
 
+        graph -> SetFillColor( m_plot.color );
+        graph -> SetFillStyle( m_plot.fill );
+        graph -> SetLineColor( m_plot.color );
+        graph -> SetLineStyle( m_plot.line );
+        graph -> SetLineWidth( m_plot.width );
         graph -> SetMarkerColor( m_plot.color );
         graph -> SetMarkerStyle( m_plot.marker );
         graph -> GetXaxis() -> CenterTitle( m_titles[Axis::X].center );
@@ -516,7 +577,7 @@ namespace PlotHelper {
         graph -> GetZaxis() -> SetLabelOffset( m_labels[Axis::Z].offset );
         return;
 
-      }  // end 'ApplyStyle(TGraph2D*)'
+      }  // end 'Apply(TGraph2D*)'
 
       // ----------------------------------------------------------------------
       //! Apply styles to text box
@@ -524,15 +585,18 @@ namespace PlotHelper {
       /*! n.b. this assumes the fill and border of the
        *  TPave will be the same color.
        */
-      void ApplyStyle(TPaveText* text) const {
+      void Apply(TPaveText* text) const {
 
         text -> SetFillColor( m_plot.color );
 	text -> SetFillStyle( m_plot.fill );
 	text -> SetLineColor( m_plot.color );
 	text -> SetLineStyle( m_plot.line );
+        text -> SetTextColor( m_text.color );
+        text -> SetTextFont( m_text.font );
+        text -> SetTextAlign( m_text.align );
         return;
 
-      }  // end 'ApplyStyle(TPaveText*)'
+      }  // end 'Apply(TPaveText*)'
 
       // ----------------------------------------------------------------------
       //! Apply styles to a legend
@@ -540,15 +604,18 @@ namespace PlotHelper {
       /*! n.b. this assumes the fill and border of the
        *  TLegend will be the same color.
        */
-      void ApplyStyle(TLegend* leg) const {
+      void Apply(TLegend* leg) const {
 
         leg -> SetFillColor( m_plot.color );
 	leg -> SetFillStyle( m_plot.fill );
 	leg -> SetLineColor( m_plot.color );
 	leg -> SetLineStyle( m_plot.line );
+        leg -> SetTextColor( m_text.color );
+        leg -> SetTextFont( m_text.font );
+        leg -> SetTextAlign( m_text.align );
         return;
 
-      }  //  end 'ApplyStyle(TLegend*)'
+      }  //  end 'Apply(TLegend*)'
       
       // ----------------------------------------------------------------------
       //! default ctor/dtor
@@ -1229,6 +1296,26 @@ namespace PlotHelper {
         return;
 
       }  // end 'Draw()'
+
+      // ----------------------------------------------------------------------
+      //! Write canvas
+      // ----------------------------------------------------------------------
+      void Write() {
+
+        m_canvas -> Write();
+        return;
+
+      }  // end 'Write()'
+
+      // ----------------------------------------------------------------------
+      //! Close canvas
+      // ----------------------------------------------------------------------
+      void Close() {
+
+        m_canvas -> Close();
+        return;
+
+      }  // end 'Close()'
 
       // ----------------------------------------------------------------------
       //! Get a specific pad via its label
