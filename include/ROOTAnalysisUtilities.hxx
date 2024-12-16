@@ -16,7 +16,7 @@
 #include "graph/Graph.hxx"
 #include "hist/Hist.hxx"
 #include "ntuple/NTuple.hxx"
-//#include "plot/PlotHelper.hxx"  // UNDER CONSTRUCTION
+#include "plot/Plot.hxx"
 #include "mva/MVA.hxx"
 
 // alias for convenience

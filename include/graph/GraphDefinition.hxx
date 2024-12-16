@@ -35,6 +35,8 @@ namespace ROOTAnalysisUtilities {
     /*! A small class to consolidate necessary data
      *  to define a TGraph, TGraphErrors, or
      *  TGraphAsymmErrors (and their 2D variants).
+     *
+     *  FIXME should also add TScatter...
      */ 
     class Definition {
 

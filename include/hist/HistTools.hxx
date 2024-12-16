@@ -34,7 +34,7 @@ namespace ROOTAnalysisUtilities {
     /*! FIXME this might be better served in a dedicated "Type" or "Constant"
      *  namespace...
      */ 
-    enum class Axis {X, Y, Z};
+    enum Axis {X, Y, Z};
 
 
 

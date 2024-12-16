@@ -82,7 +82,6 @@ namespace ROOTAnalysisUtilities {
 
     };  // end Binning
 
-
   }  // end Hist namespace
 }  // end ROOTAnalysisUtilities namespace
 
