@@ -31,14 +31,12 @@ namespace ROOTAnalysisUtilities {
     // ------------------------------------------------------------------------
     //! Alias for map of histograms
     // ------------------------------------------------------------------------
-    template <typename T>
-    using HistMap = std::map<std::string, T>;
+    template <typename T> using HistMap = std::map<std::string, T>;
 
     // ------------------------------------------------------------------------
     // Alias for a collection/grid of histograms
     // ------------------------------------------------------------------------
-    template <typename T, typename U>
-    using HistGrid = std::map<T, HistMap<U>>;
+    template <typename T, typename U> using HistGrid = std::map<T, HistMap<U>>;
 
 
 
