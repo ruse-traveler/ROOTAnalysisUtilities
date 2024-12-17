@@ -11,6 +11,7 @@
 #define RAU_PLOT_HXX
 
 // components
+#include "PlotCanvas.hxx"
 #include "PlotLegend.hxx"
 #include "PlotPad.hxx"
 #include "PlotPadOpts.hxx"
