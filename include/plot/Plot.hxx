@@ -11,6 +11,7 @@
 #define RAU_PLOT_HXX
 
 // components
+#include "PlotLegend.hxx"
 #include "PlotRange.hxx"
 #include "PlotStyle.hxx"
 #include "PlotTools.hxx"
