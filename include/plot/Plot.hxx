@@ -13,6 +13,7 @@
 // components
 #include "PlotCanvas.hxx"
 #include "PlotLegend.hxx"
+#include "PlotManager.hxx"
 #include "PlotPad.hxx"
 #include "PlotPadOpts.hxx"
 #include "PlotRange.hxx"
