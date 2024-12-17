@@ -12,6 +12,8 @@
 
 // components
 #include "PlotLegend.hxx"
+#include "PlotPad.hxx"
+#include "PlotPadOpts.hxx"
 #include "PlotRange.hxx"
 #include "PlotStyle.hxx"
 #include "PlotTextBox.hxx"
