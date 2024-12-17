@@ -5,5 +5,5 @@ especially graphical objects (i.e. things that can be drawn) and TNtuple's.
 
 ### To-Do
   - [] clean up WIP from BHCal pTDR
-  - [] add histogram manager from PHENC
+  - [x] add histogram manager from PHENC
   - [] upgrade to cmake rather than compiling via cling
