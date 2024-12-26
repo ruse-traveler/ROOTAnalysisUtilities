@@ -102,9 +102,9 @@ namespace ROOTAnalysisUtilities {
         void SetDefinition(const Canvas& define)          {m_define = define;}
         void SetPadLabels(const Tools::LabelList& labels) {m_labels = labels;}
 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         //! Make canvas and pads 
-        // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
         void MakePlot() {
 
           // create canvas/pads

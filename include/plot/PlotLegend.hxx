@@ -87,7 +87,7 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         //! Setters
         // --------------------------------------------------------------------
-        void SetVertices(const Tools::Vertices& vtxs)             {m_vtxs    = vtxs;}
+        void SetVertices(const Tools::Vertices& vtxs)      {m_vtxs    = vtxs;}
         void SetHeader(const std::string& hdr)             {m_header  = hdr;}
         void SetEntries(const std::vector<Entry>& entries) {m_entries = entries;}
 
@@ -106,7 +106,14 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         TLegend* MakeLegend() {
 
-          TLegend* leg = new TLegend( m_vtxs[0], m_vtxs[1], m_vtxs[2], m_vtxs[3], m_header.data() );
+          TLegend* leg = new TLegend(
+            m_vtxs[0],
+            m_vtxs[1],
+            m_vtxs[2],
+            m_vtxs[3],
+            m_header.data()
+          );
+
           for (const Entry& entry : m_entries) {
             leg -> AddEntry( entry.object, entry.label.data(), entry.option.data() );
           }
