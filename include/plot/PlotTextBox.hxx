@@ -68,7 +68,14 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         TPaveText* MakeTPaveText() {
 
-          TPaveText* pt = new TPaveText( m_vtxs[0], m_vtxs[1], m_vtxs[2], m_vtxs[3], m_opt.data() );
+          TPaveText* pt = new TPaveText(
+            m_vtxs[0],
+            m_vtxs[1],
+            m_vtxs[2],
+            m_vtxs[3],
+            m_opt.data()
+          );
+
           for (const std::string& text : m_text) {
             pt -> AddText( text.data() );
           }
