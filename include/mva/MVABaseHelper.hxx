@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 // rau components
-#include "MVATools.hxx"
+#include "MVATypes.hxx"
 
 
 
@@ -59,18 +59,18 @@ namespace ROOTAnalysisUtilities {
         // ----------------------------------------------------------------------
         //! Set input variables
         // ----------------------------------------------------------------------
-        inline void SetInputVariables(const std::vector<std::pair<Tools::Use, std::string>>& inputs) {
+        inline void SetInputVariables(const std::vector<std::pair<Types::Use, std::string>>& inputs) {
 
           // assign input leaf to relevant vector
           for (const auto& input : inputs) {
             switch (input.first) {
-              case Tools::Use::Target:
+              case Types::Use::Target:
                 m_targets.push_back( input.second );
                 break;
-              case Tools::Use::Train:
+              case Types::Use::Train:
                 m_trainers.push_back( input.second );
                 break;
-              case Tools::Use::Watch:
+              case Types::Use::Watch:
                 [[fallthrough]];
               default:
                 m_watchers.push_back( input.second );

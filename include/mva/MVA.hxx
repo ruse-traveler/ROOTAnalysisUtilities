@@ -17,6 +17,7 @@
 #include "MVAReadHelper.hxx"
 #include "MVATools.hxx"
 #include "MVATrainHelper.hxx"
+#include "MVATypes.hxx"
 
 #endif
 

@@ -13,7 +13,7 @@
 // c++ utilities
 #include <optional>
 // rau components
-#include "PlotTools.hxx"
+#include "PlotTypes.hxx"
 
 
 
@@ -29,9 +29,9 @@ namespace ROOTAnalysisUtilities {
     struct Range {
 
       // members
-      Tools::Interval x;
-      Tools::Interval y;
-      Tools::Interval z;
+      Types::Interval x;
+      Types::Interval y;
+      Types::Interval z;
 
       // ----------------------------------------------------------------------
       //! default ctor/dtor
@@ -42,7 +42,7 @@ namespace ROOTAnalysisUtilities {
       // ----------------------------------------------------------------------
       //! ctor accepting only x range
       // ----------------------------------------------------------------------
-      Range(const Tools::Interval& xrange) {
+      Range(const Types::Interval& xrange) {
         x = xrange;
       }
 
@@ -50,9 +50,9 @@ namespace ROOTAnalysisUtilities {
       //! ctor accepting x, y, and possibly z range
       // ----------------------------------------------------------------------
       Range(
-        const Tools::Interval& xrange,
-        const Tools::Interval& yrange,
-        std::optional<Tools::Interval> zrange = std::nullopt
+        const Types::Interval& xrange,
+        const Types::Interval& yrange,
+        std::optional<Types::Interval> zrange = std::nullopt
       ) {
         x = xrange;
         y = yrange;

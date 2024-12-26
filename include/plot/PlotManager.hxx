@@ -22,7 +22,7 @@
 // rau components
 #include "PlotCanvas.hxx"
 #include "PlotPad.hxx"
-#include "PlotTools.hxx"
+#include "PlotTypes.hxx"
 
 
 
@@ -47,8 +47,8 @@ namespace ROOTAnalysisUtilities {
         std::vector<TPad*> m_pads;
 
         // pad-label-to-index map
-        Tools::LabelList       m_labels;
-        Tools::LabelToIndexMap m_labtoindex;
+        Types::LabelList       m_labels;
+        Types::LabelToIndexMap m_labtoindex;
 
         // --------------------------------------------------------------------
         //! Make a pad label
@@ -93,14 +93,14 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         Canvas             GetDefinition() const {return m_define;}
         TCanvas*           GetTCanvas()    const {return m_canvas;}
-        Tools::LabelList   GetPadLabels()  const {return m_labels;}
+        Types::LabelList   GetPadLabels()  const {return m_labels;}
         std::vector<TPad*> GetTPads()      const {return m_pads;}
 
         // --------------------------------------------------------------------
         //! Setters 
         // --------------------------------------------------------------------
         void SetDefinition(const Canvas& define)          {m_define = define;}
-        void SetPadLabels(const Tools::LabelList& labels) {m_labels = labels;}
+        void SetPadLabels(const Types::LabelList& labels) {m_labels = labels;}
 
         // --------------------------------------------------------------------
         //! Make canvas and pads 
@@ -180,7 +180,7 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         Manager(
           const Canvas& define,
-          std::optional<Tools::LabelList> padlabels = std::nullopt
+          std::optional<Types::LabelList> padlabels = std::nullopt
         ) {
 
           m_define = define;

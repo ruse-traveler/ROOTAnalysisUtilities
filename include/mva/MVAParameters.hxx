@@ -17,7 +17,7 @@
 // root libraries
 #include <TCut.h>
 // rau components
-#include "MVATools.hxx"
+#include "MVATypes.hxx"
 
 
 
@@ -39,7 +39,7 @@ namespace ROOTAnalysisUtilities {
     struct Parameters {
 
       // variables & methods
-      std::vector<std::pair<Tools::Use,  std::string>> variables;  // input variables & usage
+      std::vector<std::pair<Types::Use,  std::string>> variables;  // input variables & usage
       std::vector<std::pair<std::string, std::string>> methods;    // methods to use & options
 
       // tmva options

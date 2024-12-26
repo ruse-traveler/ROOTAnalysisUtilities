@@ -22,21 +22,12 @@
 #include <TMath.h>
 // rau componenets
 #include "../graph/GraphPoint.hxx"
+#include "HistTypes.hxx"
 
 
 
 namespace ROOTAnalysisUtilities {
   namespace Tools {
-
-    // ------------------------------------------------------------------------
-    //! Different axes of histograms & graphs
-    // ------------------------------------------------------------------------
-    /*! FIXME this might be better served in a dedicated "Type" or "Constant"
-     *  namespace...
-     */ 
-    enum Axis {X, Y, Z};
-
-
 
     // ------------------------------------------------------------------------
     //! Wrapper function for std::pow
@@ -131,7 +122,7 @@ namespace ROOTAnalysisUtilities {
     // ------------------------------------------------------------------------
     std::vector<double> GetBinsFromPoints(
       const std::vector<Graph::Point>& points,
-      const Axis axis = Axis::X
+      const Types::Axis axis = Types::Axis::X
     ) {
 
       // instantiate vector to hold bin edges
@@ -140,13 +131,13 @@ namespace ROOTAnalysisUtilities {
       // grab all low edges
       for (const Graph::Point& point : points) {
         switch (axis) {
-          case Axis::X:
+          case Types::Axis::X:
             bins.push_back(point.x - point.ex_lo);
             break;
-          case Axis::Y:
+          case Types::Axis::Y:
             bins.push_back(point.y - point.ey_lo);
             break;
-          case Axis::Z:
+          case Types::Axis::Z:
             bins.push_back(point.z - point.ez_lo);
             break;
         }
@@ -154,19 +145,19 @@ namespace ROOTAnalysisUtilities {
 
       // grab high edge of last bin & return
       switch (axis) {
-        case Axis::X:
+        case Types::Axis::X:
           bins.push_back(points.back().x + points.back().ex_hi);
           break;
-        case Axis::Y:
+        case Types::Axis::Y:
           bins.push_back(points.back().y + points.back().ey_hi);
           break;
-        case Axis::Z:
+        case Types::Axis::Z:
           bins.push_back(points.back().z + points.back().ez_hi);
           break;
       }
       return bins;
 
-    }  // end 'GetBinsFromPoints(std::vector<Graph::Point>&)'
+    }  // end 'GetBinsFromPoints(std::vector<Graph::Point>&, Types::Axis)'
 
 
 

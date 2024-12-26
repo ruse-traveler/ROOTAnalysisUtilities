@@ -17,7 +17,7 @@
 #include <TLegend.h>
 #include <TObject.h>
 // rau components
-#include "PlotTools.hxx"
+#include "PlotTypes.hxx"
 
 
 
@@ -71,7 +71,7 @@ namespace ROOTAnalysisUtilities {
       private:
 
         // data members
-        Tools::Vertices    m_vtxs;
+        Types::Vertices    m_vtxs;
         std::string        m_header = "";
         std::vector<Entry> m_entries;
 
@@ -80,14 +80,14 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         //! Getters
         // --------------------------------------------------------------------
-        Tools::Vertices    GetVertices() const {return m_vtxs;}
+        Types::Vertices    GetVertices() const {return m_vtxs;}
         std::string        GetHeader()   const {return m_header;}
         std::vector<Entry> GetEntries()  const {return m_entries;}
 
         // --------------------------------------------------------------------
         //! Setters
         // --------------------------------------------------------------------
-        void SetVertices(const Tools::Vertices& vtxs)      {m_vtxs    = vtxs;}
+        void SetVertices(const Types::Vertices& vtxs)      {m_vtxs    = vtxs;}
         void SetHeader(const std::string& hdr)             {m_header  = hdr;}
         void SetEntries(const std::vector<Entry>& entries) {m_entries = entries;}
 
@@ -131,7 +131,7 @@ namespace ROOTAnalysisUtilities {
         //! ctor accepting arguments 
         // --------------------------------------------------------------------
         Legend(
-          const Tools::Vertices& vtxs,
+          const Types::Vertices& vtxs,
           const std::vector<Entry>& entries,
           const std::string& hdr = ""
         ) {
@@ -140,7 +140,7 @@ namespace ROOTAnalysisUtilities {
           m_header  = hdr;
           m_entries = entries;
 
-        };  // end ctor(Tools::Vertices&, std::vector<Entry>&, std::string&)'
+        };  // end ctor(Types::Vertices&, std::vector<Entry>&, std::string&)'
 
     };  // end Legend
 

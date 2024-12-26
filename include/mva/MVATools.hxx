@@ -35,25 +35,12 @@ namespace ROOTAnalysisUtilities {
   namespace Tools {
 
     // ------------------------------------------------------------------------
-    //! Use cases for input variables
-    // ------------------------------------------------------------------------
-    /*! FIXME this might be better served in a dedicated "Type" or "Constant"
-     *  namespace...
-     */ 
-    enum class Use {Target, Train, Watch};
-
-
-
-    // ------------------------------------------------------------------------
     //! Map of method names to algorithm type
     // ------------------------------------------------------------------------
     /*! This map enables automation of booking methods: some variants
      *  of algorithms (e.g. BDTG) cause TMVA to emit a std::runtime_error
      *  when attempting to look up the type based on the method name via
      *  the TMVA::Types helper object.
-     *
-     *  FIXME this might be better served in a dedicated "Type" or "Constant"
-     *  namespace...
      */
     inline std::map<std::string, TMVA::Types::EMVA> MapNameToType() {
 

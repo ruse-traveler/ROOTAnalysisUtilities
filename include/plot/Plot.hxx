@@ -20,6 +20,7 @@
 #include "PlotStyle.hxx"
 #include "PlotTextBox.hxx"
 #include "PlotTools.hxx"
+#include "PlotTypes.hxx"
 
 #endif
 

@@ -15,7 +15,7 @@
 // root libraries
 #include <TPaveText.h>
 // rau components
-#include "PlotTools.hxx"
+#include "PlotTypes.hxx"
 
 
 
@@ -33,8 +33,8 @@ namespace ROOTAnalysisUtilities {
       private:
 
         // data members
-        Tools::TextList m_text;
-        Tools::Vertices m_vtxs;
+        Types::TextList m_text;
+        Types::Vertices m_vtxs;
         std::string     m_opt = "NDC NB";
 
       public:
@@ -42,15 +42,15 @@ namespace ROOTAnalysisUtilities {
         // --------------------------------------------------------------------
         //! Getters
         // --------------------------------------------------------------------
-        Tools::TextList GetText()     const {return m_text;}
-        Tools::Vertices GetVertices() const {return m_vtxs;}
+        Types::TextList GetText()     const {return m_text;}
+        Types::Vertices GetVertices() const {return m_vtxs;}
         std::string     GetOption()   const {return m_opt;}
 
         // --------------------------------------------------------------------
         //! Setters
         // --------------------------------------------------------------------
-        void SetText(const Tools::TextList& text)     {m_text = text;}
-        void SetVertices(const Tools::Vertices& vtxs) {m_vtxs = vtxs;}
+        void SetText(const Types::TextList& text)     {m_text = text;}
+        void SetVertices(const Types::Vertices& vtxs) {m_vtxs = vtxs;}
         void SetOption(const std::string& opt)        {m_opt  = opt;}
 
         // --------------------------------------------------------------------
@@ -93,8 +93,8 @@ namespace ROOTAnalysisUtilities {
         //! ctor accepting arguments
         // --------------------------------------------------------------------
         TextBox(
-          const Tools::TextList& text, 
-          const Tools::Vertices& vtxs,
+          const Types::TextList& text, 
+          const Types::Vertices& vtxs,
           const std::string& opt = "NDC NB"
         ) {
 
@@ -102,7 +102,7 @@ namespace ROOTAnalysisUtilities {
           m_vtxs = vtxs;
           m_opt  = opt;
 
-        }  // end ctor(Tools::TextList&, Tools::Vertices&, std::string&)'
+        }  // end ctor(Types::TextList&, Types::Vertices&, std::string&)'
 
     };  // end TextBox
 

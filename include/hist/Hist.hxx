@@ -14,10 +14,11 @@
 // components
 #include "HistBins.hxx"
 #include "HistBinning.hxx"
+#include "HistDefinition.hxx"
 #include "HistIndex.hxx"
 #include "HistManager.hxx"
 #include "HistTools.hxx"
-#include "HistDefinition.hxx"
+#include "HistTypes.hxx"
 
 #endif
 

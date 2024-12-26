@@ -22,6 +22,7 @@
 #include "../ntuple/NTupleHelper.hxx"
 #include "MVABaseHelper.hxx"
 #include "MVATools.hxx"
+#include "MVATypes.hxx"
 
 
 
@@ -265,7 +266,7 @@ namespace ROOTAnalysisUtilities {
         //! ctor accepting a list of variable-use pairs and a list of methods
         // ----------------------------------------------------------------------
         ReadHelper(
-          const std::vector<std::pair<Tools::Use, std::string>>& inputs,
+          const std::vector<std::pair<Types::Use, std::string>>& inputs,
           const std::vector<std::pair<std::string, std::string>>& methods
         ) {
 
@@ -273,7 +274,7 @@ namespace ROOTAnalysisUtilities {
           SetMethods(methods);
           GenerateRegressionOutputs();
 
-        }  // end ctor(std::vector<std::pair<Tools::Use, std::string>>&, std::vector<std::string>&)'
+        }  // end ctor(std::vector<std::pair<Types::Use, std::string>>&, std::vector<std::string>&)'
 
     };  // end ReadHelper
 
