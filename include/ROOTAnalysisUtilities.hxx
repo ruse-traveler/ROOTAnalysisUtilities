@@ -17,6 +17,7 @@
 #include "hist/Hist.hxx"
 #include "ntuple/NTuple.hxx"
 #include "plot/Plot.hxx"
+#include "plotter/Plotter.hxx"
 #include "mva/MVA.hxx"
 
 // alias for convenience
